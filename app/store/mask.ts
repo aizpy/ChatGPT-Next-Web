@@ -17,13 +17,18 @@ export type Mask = {
   modelConfig: ModelConfig;
   lang: Lang;
   builtin: boolean;
+  plugin?: string[];
+  enableArtifacts?: boolean;
 };
 
 export const DEFAULT_MASK_STATE = {
   masks: {} as Record<string, Mask>,
+  language: undefined as Lang | undefined,
 };
 
-export type MaskState = typeof DEFAULT_MASK_STATE;
+export type MaskState = typeof DEFAULT_MASK_STATE & {
+  language?: Lang | undefined;
+};
 
 export const DEFAULT_MASK_AVATAR = "gpt-bot";
 export const createEmptyMask = () =>
@@ -37,7 +42,12 @@ export const createEmptyMask = () =>
     lang: getLang(),
     builtin: false,
     createdAt: Date.now(),
+<<<<<<< HEAD
   } as Mask);
+=======
+    plugin: [],
+  }) as Mask;
+>>>>>>> 93ff7d26cc06d4d62f59a8ddaba6f1a8b6467a5c
 
 export const useMaskStore = createPersistStore(
   { ...DEFAULT_MASK_STATE },
@@ -98,6 +108,11 @@ export const useMaskStore = createPersistStore(
     },
     search(text: string) {
       return Object.values(get().masks);
+    },
+    setLanguage(language: Lang | undefined) {
+      set({
+        language,
+      });
     },
   }),
   {
