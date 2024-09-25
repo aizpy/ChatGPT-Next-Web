@@ -42,12 +42,8 @@ export const createEmptyMask = () =>
     lang: getLang(),
     builtin: false,
     createdAt: Date.now(),
-<<<<<<< HEAD
-  } as Mask);
-=======
     plugin: [],
   }) as Mask;
->>>>>>> 93ff7d26cc06d4d62f59a8ddaba6f1a8b6467a5c
 
 export const useMaskStore = createPersistStore(
   { ...DEFAULT_MASK_STATE },
